@@ -157,6 +157,7 @@ bool atenderPrimeiraDaFila(PFILA f, int* id){
 
 bool desistirDaFila(PFILA f, int id){
 	PONT desistente = buscarID(f, id);
+	
 	if(!desistente) return false;
 	
 	else{
