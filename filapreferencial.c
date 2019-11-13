@@ -164,5 +164,5 @@ bool desistirDaFila(PFILA f, int id){
 	free (desistente);
 
 
-	return false;
+	return true;
 }
