@@ -162,7 +162,5 @@ bool desistirDaFila(PFILA f, int id){
 	desistente->ant->prox = desistente->prox;
 	desistente->prox->ant = desistente->ant;
 	free (desistente);
-
-
 	return true;
 }
