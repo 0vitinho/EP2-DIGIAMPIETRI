@@ -158,9 +158,11 @@ bool atenderPrimeiraDaFila(PFILA f, int* id){
 bool desistirDaFila(PFILA f, int id){
 	PONT desistente = buscarID(f, id);
 	if(!desistente) return false;
-
-	desistente->ant->prox = desistente->prox;
-	desistente->prox->ant = desistente->ant;
-	free (desistente);
-	return true;
+	
+	else{
+		desistente->ant->prox = desistente->prox;
+		desistente->prox->ant = desistente->ant;
+		free (desistente);
+		return true;
+	}
 }
