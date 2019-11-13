@@ -64,17 +64,22 @@ bool inserirPessoaNaFila(PFILA f, int id, int idade){
         PONT novo = (PONT) malloc (sizeof (ELEMENTO));
             novo->id=id;
             novo->idade=idade;
+
+	if (f->cabeca->prox == f->cabeca){
+		novo->prox = f->cabeca;
+		novo->ant = f->cabeca;
+		f->cabeca->prox = novo;
+		f->cabeca->ant = novo;
+		
+		if(novo->idade <IDADEPREFERENCIAL){
+			f->inicioNaoPref = novo;
+		}
+
+		return true;
+	}
 	
 	if (novo->idade >= IDADEPREFERENCIAL){
-		if (f->cabeca->prox == f->cabeca){
-			novo->prox = f->cabeca;
-			novo->ant = f->cabeca;
-			f->cabeca->prox = novo;
-			f->cabeca->ant = novo;
-			return true;
-		}
-		
-		else if (f->inicioNaoPref == f->cabeca && f->cabeca->prox != f->cabeca){
+		if (f->inicioNaoPref == f->cabeca && f->cabeca->prox != f->cabeca){
 			novo->prox = f->cabeca;
 			novo->ant = f->cabeca->ant;
 			f->cabeca->ant->prox = novo;
@@ -92,16 +97,7 @@ bool inserirPessoaNaFila(PFILA f, int id, int idade){
 	}
 	
 	else if (novo->idade < IDADEPREFERENCIAL){
-		if (f->cabeca->prox == f->cabeca){
-			novo->prox = f->cabeca;
-			novo->ant = f->cabeca;
-			f->cabeca->prox = novo;
-			f->cabeca->ant = novo;
-			f->inicioNaoPref = novo;
-			return true;
-		}
-		
-		else if (f->inicioNaoPref == f->cabeca && f->cabeca->prox != f->cabeca){
+		if (f->inicioNaoPref == f->cabeca && f->cabeca->prox != f->cabeca){
 			novo->prox = f->cabeca;
 			novo->ant = f->cabeca->ant;
 			f->cabeca->ant->prox = novo;
